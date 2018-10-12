@@ -11,13 +11,14 @@ class YahooSpider(scrapy.Spider):
     name = 'yahoo'
     base_url = 'https://finviz.com/quote.ashx?t='
     allowed_domains = ['www.finviz.com']
-    FILE_DIR = '/Users/shuningzhou/Desktop/scrapy/DATA/'
+    FILE_DIR = '/Users/shuningzhou/fun/project/DATA/'
 
     def __init__(self, stock_name):
         self.start_urls = [self.base_url + stock_name]
         self.item = TestProjectItem()
         self.file_name = self.FILE_DIR + stock_name + '.csv'
         self.ratings_file_name = self.FILE_DIR + stock_name + "_ratings.csv"
+        self.news_file_name = self.FILE_DIR + stock_name + "_news.csv"
 
     def set_value(self, name, value):
 
@@ -186,9 +187,62 @@ class YahooSpider(scrapy.Spider):
 
         print new_ratings
 
+        # getting news titles
+        print '====== GETTING NEWS ======'
+        news = response.xpath('//*[@id="news-table"]//td')
+        news_count = len(news)
+        NEWS_ROWS = 2
+        reading_today = 0
+        new_news = []
+
+        today_value = "Aug-09-18"
+
+        for index in range(0, news_count):
+            print 'INDEX = ', index
+            add = 0
+            # check date
+            if index % NEWS_ROWS == 0:
+                title_value = ""
+                source_value = ""
+                date_value = news[index].xpath('text()').extract_first()
+                print date_value
+                date_parts = date_value.split(" ")
+                print date_parts
+                if len(date_parts) == 2:
+                    # new day
+                    if date_parts[0] == today_value:
+                        reading_today = 1
+                        title_value = news[index+1].xpath('a/text()').extract_first()
+                        source_value = news[index+1].xpath('span/text()').extract_first()
+                        print 'source:'
+                        print source_value
+                        add = 1
+                    else:
+                        reading_today = 0
+
+                elif len(date_parts) == 1:
+                    # multiple news on the same day
+                    # only read if news is on today
+                    if reading_today == 1:
+                        title_value = news[index+1].xpath('a/text()').extract_first()
+                        source_value = news[index+1].xpath('span/text()').extract_first()
+                        add = 1
+
+                if add == 1:
+                    new_news_item = {
+                        'date': today_value,
+                        'title': title_value,
+                        'source': source_value,
+                    }
+
+                    print new_news_item
+
+                    new_news.append(new_news_item)
+
         result = {
             'item': self.item,
-            'new_ratings': new_ratings
+            'new_ratings': new_ratings,
+            'new_news': new_news,
         }
 
         return result

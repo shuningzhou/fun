@@ -16,12 +16,34 @@ class TestProjectPipeline(object):
         print 'PETER: PIPLINE'
         print spider.file_name
         print spider.ratings_file_name
+        print spider.news_file_name
 
         item = result['item']
         new_ratings = result['new_ratings']
-        
+        new_news = result['new_news']
+
         print item
         print new_ratings
+        print new_news
+
+        # write to news file
+        if len(new_news) > 0:
+            if not os.path.isfile(spider.news_file_name):
+                self.csvwriter = csv.writer(open(spider.news_file_name, 'a'))
+                self.csvwriter.writerow([                                        
+                                            'date',
+                                            'title',
+                                            'source',
+                                        ])
+            else: 
+                self.csvwriter = csv.writer(open(spider.news_file_name, 'a'))
+
+            for news in new_news:
+                self.csvwriter.writerow([
+                                            news['date'],
+                                            news['title'],
+                                            news['source'],
+                                        ])
 
         # write to ratings file
         if len(new_ratings) > 0:
