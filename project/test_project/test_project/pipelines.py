@@ -9,22 +9,22 @@ import csv
 import os.path
 import datetime
 
-class TestProjectPipeline(object):
+class StockPipeline(object):
  
     def process_item(self, result, spider):     
 
-        print 'PETER: PIPLINE'
-        print spider.file_name
-        print spider.ratings_file_name
-        print spider.news_file_name
+        # print 'PETER: PIPLINE'
+        # print spider.file_name
+        # print spider.ratings_file_name
+        # print spider.news_file_name
 
         item = result['item']
         new_ratings = result['new_ratings']
         new_news = result['new_news']
 
-        print item
-        print new_ratings
-        print new_news
+        # print item
+        # print new_ratings
+        # print new_news
 
         # write to news file
         if len(new_news) > 0:

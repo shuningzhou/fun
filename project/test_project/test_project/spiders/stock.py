@@ -7,8 +7,8 @@ import datetime
 # response.xpath('//*[@class="fullview-title"]/tr[3]/td/a/text()').extract()
 # scrapy crawl yahoo -a stock_name="snd"
 
-class YahooSpider(scrapy.Spider):
-    name = 'yahoo'
+class StockSpider(scrapy.Spider):
+    name = 'stock'
     base_url = 'https://finviz.com/quote.ashx?t='
     allowed_domains = ['www.finviz.com']
     FILE_DIR = '/Users/shuningzhou/fun/project/DATA/'
@@ -16,9 +16,9 @@ class YahooSpider(scrapy.Spider):
     def __init__(self, stock_name):
         self.start_urls = [self.base_url + stock_name]
         self.item = TestProjectItem()
-        self.file_name = self.FILE_DIR + stock_name + '.csv'
-        self.ratings_file_name = self.FILE_DIR + stock_name + "_ratings.csv"
-        self.news_file_name = self.FILE_DIR + stock_name + "_news.csv"
+        self.file_name = self.FILE_DIR + stock_name + "/" + stock_name + '.csv'
+        self.ratings_file_name = self.FILE_DIR + stock_name + "/" + stock_name + "_ratings.csv"
+        self.news_file_name = self.FILE_DIR + stock_name + "/" + stock_name + "_news.csv"
 
     def set_value(self, name, value):
 
@@ -114,12 +114,13 @@ class YahooSpider(scrapy.Spider):
             self.item['high_y'] = value
 
         else :
-            print 'PETER: UNKNOWN NAME = ' + name
+            pass
+            #print 'PETER: UNKNOWN NAME = ' + name
 
     def parse(self, response):
 
         # get stock data
-        print '====== GETTING STOCK DATA ======'
+        print 'Getting stock data ...'
         names = response.xpath('//*[@class="table-dark-row"]/*[@class="snapshot-td2-cp"]')
         values = response.xpath('//*[@class="table-dark-row"]/*[@class="snapshot-td2"]')
         name_count = len(names)
@@ -133,8 +134,8 @@ class YahooSpider(scrapy.Spider):
                 if v is None:
                     v = values[index].xpath('b/span/text()').extract_first()
 
-                print n
-                print v
+                # print n
+                # print v
 
                 if n is None or v is None:
                     continue
@@ -142,24 +143,23 @@ class YahooSpider(scrapy.Spider):
                     self.set_value(n.strip(), v.strip())
         
         # get rating
-        print '====== GETTING RATINGS ======'
+        print 'Getting ratings ...'
         ratings = response.xpath('//*[@class="fullview-ratings-inner"]//td')
         RATING_ROWS = 5
 
         today_value = datetime.datetime.now().strftime("%b-%d-%y")
-        print today_value
-        today_value = 'Mar-17-17'
+        # print today_value
         ratings_count = len(ratings)
         new_ratings = []
         for index in range(0, ratings_count):
 
-            print 'INDEX = ', index
+            # print 'INDEX = ', index
 
             # check date
             if index % RATING_ROWS == 0:
                 # get text
                 date_value = ratings[index].xpath('text()').extract_first()
-                print date_value
+                # print date_value
 
                 # only get rating for today
                 if date_value == today_value:
@@ -181,41 +181,39 @@ class YahooSpider(scrapy.Spider):
                         'target': t_d
                     }
 
-                    print new_rating
+                    # print new_rating
 
                     new_ratings.append(new_rating)
 
-        print new_ratings
+        # print new_ratings
 
         # getting news titles
-        print '====== GETTING NEWS ======'
+        print 'Geting news ...'
         news = response.xpath('//*[@id="news-table"]//td')
         news_count = len(news)
         NEWS_ROWS = 2
         reading_today = 0
         new_news = []
 
-        today_value = "Aug-09-18"
-
         for index in range(0, news_count):
-            print 'INDEX = ', index
+            # print 'INDEX = ', index
             add = 0
             # check date
             if index % NEWS_ROWS == 0:
                 title_value = ""
                 source_value = ""
                 date_value = news[index].xpath('text()').extract_first()
-                print date_value
+                # print date_value
                 date_parts = date_value.split(" ")
-                print date_parts
+                # print date_parts
                 if len(date_parts) == 2:
                     # new day
                     if date_parts[0] == today_value:
                         reading_today = 1
                         title_value = news[index+1].xpath('a/text()').extract_first()
                         source_value = news[index+1].xpath('span/text()').extract_first()
-                        print 'source:'
-                        print source_value
+                        # print 'source:'
+                        # print source_value
                         add = 1
                     else:
                         reading_today = 0
@@ -235,7 +233,7 @@ class YahooSpider(scrapy.Spider):
                         'source': source_value,
                     }
 
-                    print new_news_item
+                    # print new_news_item
 
                     new_news.append(new_news_item)
 
