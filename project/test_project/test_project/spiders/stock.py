@@ -12,8 +12,10 @@ class StockSpider(scrapy.Spider):
     base_url = 'https://finviz.com/quote.ashx?t='
     allowed_domains = ['www.finviz.com']
     FILE_DIR = '/Users/shuningzhou/fun/project/DATA/'
+    handle_httpstatus_list = [404]
 
     def __init__(self, stock_name):
+        self.stock_name = stock_name
         self.start_urls = [self.base_url + stock_name]
         self.item = TestProjectItem()
         self.file_name = self.FILE_DIR + stock_name + "/" + stock_name + '.csv'
@@ -119,6 +121,12 @@ class StockSpider(scrapy.Spider):
 
     def parse(self, response):
 
+        if response.status == 404:
+            print 'Stock not found'
+            result = {
+                "status": 0
+            }
+            return result
         # get stock data
         print 'Getting stock data ...'
         names = response.xpath('//*[@class="table-dark-row"]/*[@class="snapshot-td2-cp"]')
@@ -238,6 +246,7 @@ class StockSpider(scrapy.Spider):
                     new_news.append(new_news_item)
 
         result = {
+            "status": 1,
             'item': self.item,
             'new_ratings': new_ratings,
             'new_news': new_news,

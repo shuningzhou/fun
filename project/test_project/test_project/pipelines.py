@@ -17,6 +17,12 @@ class StockPipeline(object):
         # print spider.file_name
         # print spider.ratings_file_name
         # print spider.news_file_name
+        if result['status'] == 0:
+            f = open("bad.txt", "a")
+            print 'write to bad.txt ' + spider.stock_name
+            f.write(spider.stock_name + '\n')
+            f.close()
+            return result
 
         item = result['item']
         new_ratings = result['new_ratings']
