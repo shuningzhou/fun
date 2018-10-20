@@ -73,7 +73,7 @@ class StockPipeline(object):
                                             rating['rate'],
                                             rating['target'],
                                         ])
-
+                                        
         # write to data file
         if not os.path.isfile(spider.file_name):
             self.csvwriter = csv.writer(open(spider.file_name, 'a'))

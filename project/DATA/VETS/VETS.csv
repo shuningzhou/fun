@@ -1,2 +1,5 @@
 date,time,price,change,volume,avg_volume,market_cap,income,sales,p_b,p_e,f_p_e,peg,p_c,p_s,quick_ratio,current_ratio,debt_eq,sma20,sma50,sma200,rsi,roa,roe,roi,gross_margin,oper_margin,profit_margin,shs_outstand,shs_float,short_float,short_ratio,target_price,high_y,low_y,prev_close,eps,sales_q_to_q,eps_q_to_q,insider_own,insider_trans,inst_own,inst_trans,dividend,dividend_percent,employees,recom
 2018-10-17,03:34:57 ,26.77,-0.20%,206,0.36K,-,-,-,-,-,-,-,-,-,-,-,-,-1.14%,1.76%,2.24%,48.07,-,-,-,-,-,-,-,-,-,0.01,-,-4.55%,6.93%,26.82,-,-,-,-,-,-,-,-,-,-,-
+2018-10-17,22:29:38 ,26.67,-0.36%,4,0.36K,-,-,-,-,-,-,-,-,-,-,-,-,-1.39%,1.44%,1.88%,45.27,-,-,-,-,-,-,-,-,-,0.01,-,-4.89%,6.55%,26.77,-,-,-,-,-,-,-,-,-,-,-
+2018-10-18,23:05:42 ,26.67,0.00%,0,0.34K,-,-,-,-,-,-,-,-,-,-,-,-,-1.58%,1.36%,1.84%,45.27,-,-,-,-,-,-,-,-,-,0.01,-,-4.89%,6.55%,26.67,-,-,-,-,-,-,-,-,-,-,-
+2018-10-19,23:12:35 ,26.57,-0.38%,100,0.34K,-,-,-,-,-,-,-,-,-,-,-,-,-1.95%,0.98%,1.46%,43.16,-,-,-,-,-,-,-,-,-,0.01,-,-5.24%,6.15%,26.67,-,-,-,-,-,-,-,-,-,-,-

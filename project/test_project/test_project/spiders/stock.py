@@ -174,26 +174,29 @@ class StockSpider(scrapy.Spider):
                     action_value = ratings[index+1].xpath('b/text()').extract_first()
                     name_value = ratings[index+2].xpath('text()').extract_first()
                     rate_value = ratings[index+3].xpath('text()').extract_first()
-                    r_d = rate_value.encode('utf-8')
-                    r_d = r_d.replace("\xe2\x86\x92", "to")
+                    if rate_value:
+                        rate_value = rate_value.encode('utf-8')
+                        rate_value = rate_value.replace("\xe2\x86\x92", "to")
 
+                    
                     target_value = ratings[index+4].xpath('text()').extract_first()
-                    t_d = target_value.encode('utf-8')
-                    t_d = t_d.replace("\xe2\x86\x92", "to")
+                    if target_value:
+                        target_value = target_value.encode('utf-8')
+                        target_value = target_value.replace("\xe2\x86\x92", "to")
             
                     new_rating = {
                         'date': date_value,
                         'action': action_value,
                         'name': name_value,
-                        'rate': r_d,
-                        'target': t_d
+                        'rate': rate_value,
+                        'target': target_value
                     }
 
                     # print new_rating
 
                     new_ratings.append(new_rating)
 
-        # print new_ratings
+        print new_ratings
 
         # getting news titles
         print 'Geting news ...'
