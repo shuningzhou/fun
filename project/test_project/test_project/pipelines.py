@@ -12,16 +12,19 @@ import datetime
 class StockPipeline(object):
  
     def process_item(self, result, spider):     
-
+        # f = open("bad.txt", "a")
+        # f.write("peter" + '\n')
+        # f.close()
+        return result
         # print 'PETER: PIPLINE'
         # print spider.file_name
         # print spider.ratings_file_name
         # print spider.news_file_name
         if result['status'] == 0:
-            f = open("bad.txt", "a")
-            print 'write to bad.txt ' + spider.stock_name
-            f.write(spider.stock_name + '\n')
-            f.close()
+            # f = open("bad.txt", "a")
+            # print 'write to bad.txt ' + spider.stock_name
+            # f.write(spider.stock_name + '\n')
+            # f.close()
             return result
 
         item = result['item']
@@ -73,7 +76,7 @@ class StockPipeline(object):
                                             rating['rate'],
                                             rating['target'],
                                         ])
-                                        
+
         # write to data file
         if not os.path.isfile(spider.file_name):
             self.csvwriter = csv.writer(open(spider.file_name, 'a'))
