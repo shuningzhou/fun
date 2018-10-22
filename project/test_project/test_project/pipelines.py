@@ -15,7 +15,7 @@ class StockPipeline(object):
         # f = open("bad.txt", "a")
         # f.write("peter" + '\n')
         # f.close()
-        return result
+        # return result
         # print 'PETER: PIPLINE'
         # print spider.file_name
         # print spider.ratings_file_name
