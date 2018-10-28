@@ -5,7 +5,8 @@ import os
 
 def isWeekday():
     day = datetime.datetime.today().weekday()
-    if day < 6:
+    print day
+    if day < 5:
         return True
     else:
         return False
