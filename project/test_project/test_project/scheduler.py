@@ -34,8 +34,8 @@ while True:
         # This is for avoiding running multiple crawlers for the same day.
         running = False
 
-    if hour == 22 and minute < 30:
-        # schdeule a run around 17:00.
+    if hour == 16 and minute < 5:
+        # schdeule a run around 16:00.
         if running == False:            
             if isWeekday():
                 print "[Weekday]"
