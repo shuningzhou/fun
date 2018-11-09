@@ -14,7 +14,7 @@ runner = CrawlerRunner(settings)
 
 @defer.inlineCallbacks
 def crawl():
-    start = 5212
+    start = 0
     count = 0
     for index, row in df.iterrows():
         symbol = row["Symbol"]
@@ -23,7 +23,7 @@ def crawl():
             print "Making directory for " + symbol
             os.makedirs(dir)
 
-        if count > start:
+        if count >= start:
             print "Crawling data for " + symbol + " ..."
             yield runner.crawl("stock", stock_name=symbol)
 
@@ -38,7 +38,7 @@ def crawl():
             print "Making directory for " + symbol
             os.makedirs(dir)
         
-        if count > start:
+        if count >= start:
             print "Crawling data for " + symbol + " ..."
             yield runner.crawl("stock", stock_name=symbol)
 

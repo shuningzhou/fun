@@ -34,7 +34,7 @@ while True:
         # This is for avoiding running multiple crawlers for the same day.
         running = False
 
-    if hour == 19 and minute < 40:
+    if hour == 16 and minute < 5:
         # schdeule a run around 16:00.
         if running == False:            
             if isWeekday():
