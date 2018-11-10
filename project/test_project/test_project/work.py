@@ -37,7 +37,7 @@ def crawl():
         if not os.path.exists(dir):
             print "Making directory for " + symbol
             os.makedirs(dir)
-        
+    
         if count >= start:
             print "Crawling data for " + symbol + " ..."
             yield runner.crawl("stock", stock_name=symbol)
