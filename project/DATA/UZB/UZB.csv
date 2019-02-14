@@ -1,3 +1,4 @@
 date,time,price,change,volume,avg_volume,market_cap,income,sales,p_b,p_e,f_p_e,peg,p_c,p_s,quick_ratio,current_ratio,debt_eq,sma20,sma50,sma200,rsi,roa,roe,roi,gross_margin,oper_margin,profit_margin,shs_outstand,shs_float,short_float,short_ratio,target_price,high_y,low_y,prev_close,eps,sales_q_to_q,eps_q_to_q,insider_own,insider_trans,inst_own,inst_trans,dividend,dividend_percent,employees,recom
 2019-02-11,17:48:43 ,25.42,1.07%,"9,275",18.55K,-,-,-,-,-,-,-,-,-,-,-,-,1.20%,2.57%,0.08%,55.82,-,-,-,-,-,-,-,-,-,0.30,-,-2.98%,14.50%,25.15,-,-,-,-,-,-,-,-,-,-,-
 2019-02-12,17:48:45 ,25.41,-0.04%,"26,570",18.58K,-,-,-,-,-,-,-,-,-,-,-,-,1.10%,2.54%,0.04%,55.64,-,-,-,-,-,-,-,-,-,0.30,-,-3.02%,14.46%,25.42,-,-,-,-,-,-,-,-,-,-,-
+2019-02-13,17:56:54 ,25.55,0.57%,"8,165",18.94K,-,-,-,-,-,-,-,-,-,-,-,-,1.57%,3.13%,0.60%,57.92,-,-,-,-,-,-,-,-,-,0.29,-,-2.46%,15.11%,25.41,-,-,-,-,-,-,-,-,-,-,-
