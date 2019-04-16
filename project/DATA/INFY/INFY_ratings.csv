@@ -2,3 +2,8 @@ date,action,name,rate,target
 Jan-14-19,Upgrade,Susquehanna,Negative to Neutral,
 Jan-14-19,Upgrade,Nomura,Reduce to Neutral,
 Jan-15-19,Upgrade,Morgan Stanley,Equal-Weight to Overweight,
+Apr-15-19,Downgrade,Nomura,Neutral to Reduce,
+Apr-15-19,Downgrade,Morgan Stanley,Overweight to Equal-Weight,
+Apr-15-19,Downgrade,Investec,Buy to Hold,
+Apr-15-19,Downgrade,Credit Suisse,Neutral to Underperform,
+Apr-15-19,Downgrade,Citigroup,Buy to Neutral,
